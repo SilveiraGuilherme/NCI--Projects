@@ -5,8 +5,7 @@
 package distsys.fibonacci;
  
 import java.rmi.*;
-
-import java.rmi.RemoteException;
+// import java.rmi.RemoteException;
 
 /**
  * This is an interface definition. It defines the interface for the Hello service that can be used
@@ -20,7 +19,5 @@ public interface Fibonacci extends java.rmi.Remote {
          * is implemented.
          * @throws RemoteException 
          */
-	public String sayHello() throws RemoteException;
-        public String sayGoodBye() throws RemoteException;
-
+	public int fibNum(int num) throws RemoteException;
 }

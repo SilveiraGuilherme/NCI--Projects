@@ -5,8 +5,7 @@
 package distsys.helloworld;
  
 import java.rmi.*;
-
-import java.rmi.RemoteException;
+// import java.rmi.RemoteException;
 
 /**
  * This is an interface definition. It defines the interface for the Hello service that can be used

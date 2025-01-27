@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package distsys.fibonacci;
+
 import distsys.fibonacci.Fibonacci;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -19,15 +20,18 @@ public class FibonacciImpl extends UnicastRemoteObject implements Fibonacci {
          * This is the service method that gets called by the client.
          * @return 
          */
-	public String sayHello () {
+	public int fibNum(int n) throws RemoteException {         
+            int a = 0;
+            int b = 1;
+            int c = a + b;
             
-		return "Hello Impl says HelloWorld!";
+            for (int i = 0; i < n; i++) { 
+                a = b;
+                b = c;
+            }
+            return c;
 	}
         
-        public String sayGoodBye () {
-            return "Hello Impl says GoodBye!";
-        }
-	
    public static void main (String args[] ) {
 	   try {
 		    // make a new instance of the server object

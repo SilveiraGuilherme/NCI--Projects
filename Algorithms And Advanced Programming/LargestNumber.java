@@ -5,17 +5,15 @@ public class LargestNumber {
         int[] numList = new int[10];
 
         for (int i = 0; i < numList.length; i++) {
-            numList[i] = Integer.parseInt(JOptionPane.showInputDialog("Enter a number (" + i + " / 10)"));
+            numList[i] = Integer.parseInt(JOptionPane.showInputDialog("Enter a number (" + (i + 1) + " / 10)"));
         }
 
         long startTime = System.nanoTime();
         int largest = getLargest(numList);
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
+        long elapsedTime = System.nanoTime() - startTime;
 
-        JOptionPane.showMessageDialog(null, "The largest number is " + largest + ".");
-        JOptionPane.showMessageDialog(null, "It took " + elapsedTime + " nanoseconds to perform this operation.");
-
+        JOptionPane.showMessageDialog(null, "The largest number is " + largest + " and it took " + elapsedTime
+                + " nanoseconds to perform this operation.");
     }
 
     public static int getLargest(int[] numList) {

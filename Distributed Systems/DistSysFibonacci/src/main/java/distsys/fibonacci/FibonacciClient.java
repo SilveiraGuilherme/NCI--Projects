@@ -9,20 +9,23 @@ import java.rmi.*;
 public class FibonacciClient {
 
 	public static void main(String[] args) {
+            String hostName = "localhost";
+            int n = 10;
+		
+            if (args.length > 0){
+		hostName = args[0];
+		n = Integer.parseInt(args[1]);
+            }
 		
 		try {
+                    System.setProperty("java.rmi.server.hostanme", hostName);
 			 
-			// set up the servername. Print it out for testing purposes
-                        // we are assuming that the server is on the local machine
-			String serverName = "//localhost/FibonacciServer";
-			System.out.println("Client will look up server named: " + serverName);
 			
 			//get a stub object for the server by looking it up by name
-			Fibonacci obj = (Fibonacci)Naming.lookup(serverName);
+			Fibonacci obj = (Fibonacci)Naming.lookup("//" + hostName + "/FibonacciServer");
 			
 			// invoke the method on the remote object and print it out.
-			System.out.println(obj.sayHello());
-                        System.out.println(obj.sayGoodBye());
+			System.out.println(obj.fibNum(n));
 	
 		}
 		catch (Exception e) {

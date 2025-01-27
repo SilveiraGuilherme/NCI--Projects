@@ -5,14 +5,12 @@ public class LargerNumberNano {
         int num1 = Integer.parseInt(JOptionPane.showInputDialog("Enter the first number: "));
         int num2 = Integer.parseInt(JOptionPane.showInputDialog("Enter the second number: "));
 
-        JOptionPane.showMessageDialog(null, getLargest(num1, num2));
-
         long startTime = System.nanoTime();
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
+        int largest = getLargest(num1, num2);
+        long elapsedTime = System.nanoTime() - startTime;
 
-        JOptionPane.showMessageDialog(null, "It took " + elapsedTime + " nanoseconds to perform this operation.");
-
+        JOptionPane.showMessageDialog(null, "The largest number is " + largest + " and it took " + elapsedTime
+                + " nanoseconds to perform this operation.");
     }
 
     public static int getLargest(int a, int b) {

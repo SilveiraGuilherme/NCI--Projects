@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package distsys.helloworld;
+
 import distsys.helloworld.Hello;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -20,22 +21,21 @@ public class HelloImpl extends UnicastRemoteObject implements Hello {
          * @return 
          */
 	public String sayHello () {
-            
-		return "Hello Impl says HelloWorld!";
+            return "Hello Impl says HelloWorld!";
 	}
         
         public String sayGoodBye () {
             return "Hello Impl says GoodBye!";
         }
 	
-   public static void main (String args[] ) {
+   public static void main (String args[]) {
 	   try {
 		    // make a new instance of the server object
                     HelloImpl hiServiceObj = new HelloImpl();
                     // create a new RMI registry on port 1099
                      Registry registry = LocateRegistry.createRegistry(1099);//1099 is the port number
                      // bind the server object to the name of the service "HelloServer";
-                     registry.rebind("HelloServer",hiServiceObj );
+                     registry.rebind("HelloServer", hiServiceObj );
                      // print a message that the server is ready
 		    System.out.println("Server: " + "HelloServer"  + " is ready");
 	   }
