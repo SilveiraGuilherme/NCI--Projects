@@ -80,10 +80,34 @@ public class LinkedList<T> implements List<T> {
 		String out = "";
 		Node<T> p = first;
 		while (p != null) {
-			out += p.element + " : ";
+			out += " " + p.element;
 			p = p.next;
 		}
 		return out;
+	}
+
+	// add an object at a particular index
+	public void addIndex(int index, T el) {
+		// index does not exist
+		if (index < 0 || index > size())
+			throw new IndexOutOfBoundsException();
+		// index is at least 0
+		if (index == 0) {
+			// new element goes at the beggining
+			first = new Node<T>(el, first);
+			//
+			if (last == null) {
+				last = first;
+			}
+			return;
+		}
+	}
+
+	public void addBefore(T target, T element) {
+		Node<T> pred = first;
+		for (int k = 1; k < ) {
+
+		}
 	}
 
 	// we want to remove an element from the LinkedList
@@ -92,6 +116,7 @@ public class LinkedList<T> implements List<T> {
 	public T remove(T el) {
 		// we know that we should cater for the reference pointers
 		T found = el;
+		while ()
 		if (contains(el)) {
 			// we need to search and remove
 			if (first.element == el) {
@@ -103,9 +128,9 @@ public class LinkedList<T> implements List<T> {
 					first = first.next;
 				}
 			}
+			return found;
 		} else {
 		}
-		return found;
 	}
 
 	public static void main(String[] args) {

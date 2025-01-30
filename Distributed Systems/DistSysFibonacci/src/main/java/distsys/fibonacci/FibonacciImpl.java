@@ -21,7 +21,19 @@ public class FibonacciImpl extends UnicastRemoteObject implements Fibonacci {
          * @return 
          */
 	public int fibNum(int n) throws RemoteException {         
-            int a = 0;
+            		// this is a recursive solution 
+		// a non- recursive solution is okay too - but not as much fun!
+		
+		// do the base cases first 
+		if (n < 1) return 0;  // arguably this is invalid input but we will just return 0;
+		if (n == 1) return 1; // the first item in the sequence is 1;
+		if  (n==2) return 1;  // the second item in the sequence is 1; 
+		
+		// the nth item in the sequence is the sum of the two previous items in the sequence
+		// so we call this method again for each of those values and add the results.
+	    return fibNum(n-1 ) + fibNum( n-2);
+            
+            /*int a = 0;
             int b = 1;
             int c = a + b;
             
@@ -29,7 +41,7 @@ public class FibonacciImpl extends UnicastRemoteObject implements Fibonacci {
                 a = b;
                 b = c;
             }
-            return c;
+            return c;*/
 	}
         
    public static void main (String args[] ) {
