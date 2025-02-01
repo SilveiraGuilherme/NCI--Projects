@@ -7,6 +7,9 @@ public interface List<T> {
 	// we should also have a method to calculate the size of the LinkedList
 	public int size();
 
+	// add an element at a particular index
+	public void addIndex(int index, T el);
+
 	/**
 	 * This method adds an element to the list in the position previous to the first
 	 * occurrence of the the target element
@@ -22,5 +25,5 @@ public interface List<T> {
 	/**
 	 * This method removes the first occurance of the target from the list
 	 **/
-	public void remove(T target);
+	public T remove(T target) throws Exception;
 }

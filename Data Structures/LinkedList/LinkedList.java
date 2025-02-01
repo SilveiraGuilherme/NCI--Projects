@@ -39,6 +39,18 @@ public class LinkedList<T> implements List<T> {
 		return count;
 	}
 
+	// we would like to override the toString methods
+	@Override
+	public String toString() {
+		String out = "";
+		Node<T> p = first;
+		while (p != null) {
+			out += p.element + " ";
+			p = p.next;
+		}
+		return out;
+	}
+
 	// able to add, remove, search, etc.., objects
 	// it's easy to add/remove the last node
 
@@ -56,36 +68,6 @@ public class LinkedList<T> implements List<T> {
 		}
 	}
 
-	// we need to have a method that can find if a node exists in the LinkedList
-	public boolean contains(T target) {
-		// remember that just like the size method we should start at the first node and
-		// iterate through the collection in our LinkedList
-		boolean found = false;
-
-		// do something
-		Node<T> current = first;
-		while (current != null) { // if current is null, we are at the end of the LinkedList
-			// we have to check if the element is the one we are looking for
-			if (current.element == target) {
-				found = true;
-			}
-			current = current.next; // this moves to the next element
-		}
-		return found;
-	}
-
-	// we would like to override the toString methods
-	@Override
-	public String toString() {
-		String out = "";
-		Node<T> p = first;
-		while (p != null) {
-			out += " " + p.element;
-			p = p.next;
-		}
-		return out;
-	}
-
 	// add an object at a particular index
 	public void addIndex(int index, T el) {
 		// index does not exist
@@ -99,16 +81,32 @@ public class LinkedList<T> implements List<T> {
 			if (last == null) {
 				last = first;
 			}
-			return;
+		} else {
+			Node<T> pred = first;
+			for (int k = 1; k <= index - 1; k++) {
+				pred = pred.next;
+			}
+			pred.next = new Node<T>(el, pred.next);
+			if (pred.next.next == null) {
+				last = pred.next;
+			}
 		}
-		Node<T> pred = first;
-		for (int k = 1; k <= index - 1; k++) {
-			pred = pred.next;
+	}
+
+	// we need to have a method that can find if a node exists in the LinkedList
+	public boolean contains(T target) {
+		// remember that just like the size method we should start at the first node and
+		// iterate through the collection in our LinkedList
+		boolean found = false;
+		Node<T> current = first;
+		while (current != null) { // if current is null, we are at the end of the LinkedList
+			// we have to check if the element is the one we are looking for
+			if (current.element == target) {
+				found = true;
+			}
+			current = current.next; // this moves to the next element
 		}
-		pred.next = new Node<T>(el, pred.next);
-		if (pred.next.next == null) {
-			last = pred.next;
-		}
+		return found;
 	}
 
 	public void addBefore(T target, T el) {
@@ -140,7 +138,7 @@ public class LinkedList<T> implements List<T> {
 	// we want to remove an element from the LinkedList
 	// to do this we need to pass in an element that we would like to remove
 	// we would like to return the object that was removed
-	public void remove(T target) {
+	public T remove(T target) throws Exception {
 		// we know that we should cater for the reference pointers
 		if (contains(target)) {
 			if (first.element == target) {
@@ -150,7 +148,6 @@ public class LinkedList<T> implements List<T> {
 				} else {
 					first = first.next;
 				}
-				return;
 			} else {
 				Node<T> pred = first;
 				Node<T> current = first.next;
@@ -160,32 +157,33 @@ public class LinkedList<T> implements List<T> {
 					pred = pred.next;
 				}
 				pred.next = pred.next.next;
-				return;
 			}
+			return target;
+		} else {
+			throw new Exception("Element not found.");
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// we are in main...
 
 		// Let's create the empty LinkedList
 		LinkedList<String> myList = new LinkedList<>();
 
 		myList.add("apple");
-		myList.add("orange");
-		myList.add("grape");
-		myList.addBefore("grape", "pineapple");
-		myList.addAfter("grape", "fig");
-
-		myList.remove("apple");
-
+		myList.add("Orange");
+		myList.add("Banana");
+		myList.add("Pear");
+		myList.add("Kiwi");
+		System.out.println("---------------------------");
+		System.out.println("The size of the linked list is: " + myList.size());
 		System.out.println(myList);
-		System.out.println("There are " + myList.size() + " elements in the list");
-
-		if (myList.contains("apple")) {
-			System.out.println("We have an apple");
-		} else {
-			System.out.println("There are no apples");
-		}
+		System.out.println("---------------------------");
+		String removed = myList.remove("Orange");
+		System.out.println(removed + " was removed.");
+		myList.addAfter("apple", "Grape");
+		System.out.println(myList);
+		System.out.println("The size of the linked list is: " + myList.size());
+		System.out.println("---------------------------");
 	}
 }
