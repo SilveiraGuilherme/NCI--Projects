@@ -101,35 +101,67 @@ public class LinkedList<T> implements List<T> {
 			}
 			return;
 		}
+		Node<T> pred = first;
+		for (int k = 1; k <= index - 1; k++) {
+			pred = pred.next;
+		}
+		pred.next = new Node<T>(el, pred.next);
+		if (pred.next.next == null) {
+			last = pred.next;
+		}
 	}
 
-	public void addBefore(T target, T element) {
-		Node<T> pred = first;
-		for (int k = 1; k < ) {
-
+	public void addBefore(T target, T el) {
+		if (contains(target)) {
+			Node<T> current = first;
+			int index = 0;
+			while (current.element != target) {
+				index += 1;
+				current = current.next;
+			}
+			addIndex(index, el);
 		}
+		return;
+	}
+
+	public void addAfter(T target, T el) {
+		if (contains(target)) {
+			Node<T> current = first;
+			int index = 0;
+			while (current.element != target) {
+				index += 1;
+				current = current.next;
+			}
+			addIndex(index + 1, el);
+		}
+		return;
 	}
 
 	// we want to remove an element from the LinkedList
 	// to do this we need to pass in an element that we would like to remove
 	// we would like to return the object that was removed
-	public T remove(T el) {
+	public void remove(T target) {
 		// we know that we should cater for the reference pointers
-		T found = el;
-		while ()
-		if (contains(el)) {
-			// we need to search and remove
-			if (first.element == el) {
+		if (contains(target)) {
+			if (first.element == target) {
 				if (size() == 1) {
-					found = first.element;
 					first = null;
 					last = first;
 				} else {
 					first = first.next;
 				}
+				return;
+			} else {
+				Node<T> pred = first;
+				Node<T> current = first.next;
+				// we need to find the index of the target
+				while (current.element != target) {
+					current = current.next;
+					pred = pred.next;
+				}
+				pred.next = pred.next.next;
+				return;
 			}
-			return found;
-		} else {
 		}
 	}
 
@@ -142,6 +174,10 @@ public class LinkedList<T> implements List<T> {
 		myList.add("apple");
 		myList.add("orange");
 		myList.add("grape");
+		myList.addBefore("grape", "pineapple");
+		myList.addAfter("grape", "fig");
+
+		myList.remove("apple");
 
 		System.out.println(myList);
 		System.out.println("There are " + myList.size() + " elements in the list");

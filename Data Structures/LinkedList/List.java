@@ -22,5 +22,5 @@ public interface List<T> {
 	/**
 	 * This method removes the first occurance of the target from the list
 	 **/
-	public T remove(T target);
+	public void remove(T target);
 }
