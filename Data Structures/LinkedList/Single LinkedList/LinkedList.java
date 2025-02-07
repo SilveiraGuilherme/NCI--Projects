@@ -45,7 +45,7 @@ public class LinkedList<T> implements List<T> {
 		String out = "";
 		Node<T> p = first;
 		while (p != null) {
-			out += p.element + " ";
+			out += p.element + "\n";
 			p = p.next;
 		}
 		return out;
@@ -175,12 +175,15 @@ public class LinkedList<T> implements List<T> {
 		myList.add("Banana");
 		myList.add("Pear");
 		myList.add("Kiwi");
+
 		System.out.println("---------------------------");
 		System.out.println("The size of the linked list is: " + myList.size());
 		System.out.println(myList);
 		System.out.println("---------------------------");
+
 		String removed = myList.remove("Orange");
 		System.out.println(removed + " was removed.");
+
 		myList.addAfter("apple", "Grape");
 		System.out.println(myList);
 		System.out.println("The size of the linked list is: " + myList.size());
