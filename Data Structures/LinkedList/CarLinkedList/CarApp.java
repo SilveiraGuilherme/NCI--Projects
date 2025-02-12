@@ -25,6 +25,9 @@ public class CarApp {
 
         System.out.println(carList);
 
+        carList.remove("19-D-21");
+        System.out.println(carList);
+
         int numReady = carList.readySize();
         String notReady = carList.currentProblems();
         double avgCost = carList.getAverage();

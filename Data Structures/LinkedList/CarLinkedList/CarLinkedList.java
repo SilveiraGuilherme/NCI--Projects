@@ -91,27 +91,32 @@ public class CarLinkedList implements CarList {
     }
 
     public void remove(String target) {
-        DLNode current = first;
-        int index = 0;
-        while (current != null && !current.car.regist.equals(target)) {
-            index++;
-            current = current.next;
-        }
-        if (current != null && current.car.regist.equals(target)) {
-            removeInd(index);
-        }
         // DLNode current = first;
-        // while (current != null) {
-        // if (current.car.regist.equals(target)) {
-        // current.previous.next = current.next;
-        // if (current.next == null) {
-        // last = current.previous;
-        // } else {
-        // current.next.previous = current.previous;
-        // }
-        // }
+        // int index = 0;
+        // while (current != null && !current.car.regist.equals(target)) {
+        // index++;
         // current = current.next;
         // }
+        // if (current != null && current.car.regist.equals(target)) {
+        // removeInd(index);
+        // }
+        DLNode current = first;
+        while (current != null) {
+            if (current.car.regist.equals(target)) {
+                if (current.previous == null) {
+                    first = current.next;
+                    current.next.previous = null;
+                } else {
+                    current.previous.next = current.next;
+                    if (current.next == null) {
+                        last = current.previous;
+                    } else {
+                        current.next.previous = current.previous;
+                    }
+                }
+            }
+            current = current.next;
+        }
     }
 
     @Override
