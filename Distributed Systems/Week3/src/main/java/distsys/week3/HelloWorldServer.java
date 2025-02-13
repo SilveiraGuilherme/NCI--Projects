@@ -1,5 +1,6 @@
 package distsys.week3;
 
+import java.util.*;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -43,13 +44,25 @@ public class HelloWorldServer extends GreeterImplBase {
 	}
 	
 	@Override
-	public void sayHello(HelloRequest request,  StreamObserver<HelloReply> responseObserver) {
+	public void sayHello(HelloRequest request1,  StreamObserver<HelloReply> responseObserver) {
 		    
 		System.out.println("receiving hello request");
 		
-		 HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request.getName()).build();
+		 HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + request1.getName()).build();
 	     
 		 responseObserver.onNext(reply);
+	     
+	     responseObserver.onCompleted();
+	}
+        
+        @Override
+	public void sayGoodbye(GoodbyeRequest request2,  StreamObserver<GoodbyeResponse> responseObserver) {
+		    
+		System.out.println("receiving goodbye request");
+                                
+                GoodbyeResponse response = GoodbyeResponse.newBuilder().setMessage("Goodbye " + request2.getName()).setNumChar((("Goodbye " + request2.getName()).toString()).length()).build();
+                
+		responseObserver.onNext(response);
 	     
 	     responseObserver.onCompleted();
 	}
