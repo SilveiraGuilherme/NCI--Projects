@@ -6,5 +6,6 @@ public interface Stack<T> {
     // this method removes the element at the top of the stack and returns it
     public T pop();
 
-    // TODO: create method peek()
+    // this method returns the element at the top of the list (last added)
+    public T peek();
 }

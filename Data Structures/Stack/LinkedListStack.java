@@ -33,22 +33,26 @@ public class LinkedListStack<T> implements Stack<T> {
         if (top == null) {
             throw new IndexOutOfBoundsException();
         } else {
-            T element = top.element;
+            T el = top.element;
             top = top.prev;
             top.next = null;
-            return element;
+            return el;
         }
+    }
+
+    public T peek() {
+        return top.element;
     }
 
     @Override
     public String toString() {
-        String out = "TOP";
+        String out = "-----------TOP------------";
         DLNode<T> el = top;
         while (el != null) {
             out += "\n" + el.element;
             el = el.prev;
         }
-        return out + "\nBOTTOM";
+        return out + "\n----------BOTTOM----------";
     }
 
     public static void main(String[] args) {
@@ -62,7 +66,9 @@ public class LinkedListStack<T> implements Stack<T> {
         list.push("Strawberry");
 
         list.pop();
+        list.push("Tomato");
 
         System.out.println(list);
+        System.out.println("The element at the top of the stack is: " + list.peek());
     }
 }

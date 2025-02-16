@@ -15,7 +15,7 @@ public class Test2 {
         // multiples of 3.
         for (int i = 0; i < 10; i++) {
             // the method add(index, element) is going to add the elements
-            myInts.add(i, 3 * (i + 1));
+            myInts.add(3 * i);
         }
 
         // for each loop that cycles through all the elements of a collection, belonging
