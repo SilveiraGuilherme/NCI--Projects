@@ -59,11 +59,15 @@ public class HelloWorldServer extends GreeterImplBase {
 	public void sayGoodbye(GoodbyeRequest request2,  StreamObserver<GoodbyeResponse> responseObserver) {
 		    
 		System.out.println("receiving goodbye request");
-                                
-                GoodbyeResponse response = GoodbyeResponse.newBuilder().setMessage("Goodbye " + request2.getName()).setNumChar((("Goodbye " + request2.getName()).toString()).length()).build();
                 
-		responseObserver.onNext(response);
-	     
+                String message = "Goodbye " + request2.getName() + "\n";
+                int numChar = message.toString().length();
+                                
+                for (int i = 0; i <=10; i++){
+                    GoodbyeResponse response = GoodbyeResponse.newBuilder().setMessage(message).setNumChar(numChar).build();
+                    responseObserver.onNext(response);
+                }
+                
 	     responseObserver.onCompleted();
 	}
 	
