@@ -3,25 +3,22 @@ This is our class definition... we are using generics to allow java to set the g
 This is denoted using <T>
 */
 
-public class DLNode<T> {
+public class Node<T> {
 	// Instance variables
 	// We need to have some data that we would like to store and
 	// We need to be able to find the next element
 
 	T element;
-	DLNode<T> prev;
-	DLNode<T> next;
+	Node<T> next;
 
 	// constructor
-	public DLNode(T el, DLNode<T> p, DLNode<T> n) {
+	public Node(T el, Node<T> n) {
 		element = el;
-		prev = p;
 		next = n;
 	}
 
-	public DLNode(T el) {
+	public Node(T el) {
 		element = el;
-		prev = null;
 		next = null;
 	}
 

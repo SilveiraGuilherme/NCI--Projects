@@ -5,6 +5,7 @@ public class ArrayStack<T> implements Stack<T> {
     private int top;
     private T[] items;
 
+    @SuppressWarnings("unchecked")
     public ArrayStack(int size) {
         this.maxSize = size;
         this.top = -1;
