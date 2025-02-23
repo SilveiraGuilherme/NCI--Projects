@@ -6,12 +6,10 @@ public class GenericArray<T extends Comparable<T>> {
 
     GenericArray() {
         data = (T[]) (new Comparable[50]);
-        size = 0;
     }
 
     GenericArray(int n) {
         data = (T[]) (new Comparable[n]);
-        size = 0;
     }
 
     public void addItem(T element) {
@@ -50,9 +48,9 @@ public class GenericArray<T extends Comparable<T>> {
         }
     }
 
-    public void bubbleSort(T[] data) {
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 1; j < data.length - i; j++) {
+    public void bubbleSort() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 1; j < size - i; j++) {
                 if (data[j - 1].compareTo(data[j]) > 0) {
                     swap(data, j - 1, j);
                 }
@@ -62,7 +60,7 @@ public class GenericArray<T extends Comparable<T>> {
 
     public void insertionSort() {
         int sortedIndex = 1;
-        while (sortedIndex < data.length) {
+        while (sortedIndex < size) {
             int currentQueryIndex = sortedIndex;
             while (currentQueryIndex > 0 && (data[currentQueryIndex].compareTo(data[currentQueryIndex - 1]) < 0)) {
                 swap(data, currentQueryIndex, currentQueryIndex - 1);

@@ -3,12 +3,20 @@
 
 public class RecPalindrome {
     public static void main(String[] args) {
+        System.out.println(checkPalindrome("Racecar"));
 
     }
 
-    public boolean checkPalindrome(String word) {
-        if (word.charAt(0) == word.chartAt(word.length() - 1)) {
-
+    public static boolean checkPalindrome(String word) {
+        word = word.toLowerCase(); // convert to lower case to handle case insensitivity
+        // base case: if the word has 1 or 0 characters it is a palíndrome
+        if (word.length() <= 1) {
+            return true;
         }
+        // check if the first and last letters of the word match
+        if (word.charAt(0) != word.charAt(word.length() - 1)) {
+            return false;
+        }
+        return checkPalindrome(word.substring(1, word.length() - 1));
     }
 }

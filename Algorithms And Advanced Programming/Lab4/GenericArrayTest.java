@@ -2,31 +2,21 @@ import java.util.Iterator;
 
 public class GenericArrayTest {
     public static void main(String[] args) {
+        GenericArray<Staff> staff = new GenericArray<Staff>();
 
-        // GenericArray<Integer> arrInt = new GenericArray<Integer>();
-        // for(int i=0; i<20; i++){
-        // arrInt.addItem(i);
-        // }
-        // System.out.println("Is the number 15 here? " + arrInt.search(100));
+        staff.addItem(new Staff(1, "William", 21, 160));
+        staff.addItem(new Staff(2, "John", 30, 190));
+        staff.addItem(new Staff(3, "Mathew", 18, 170));
+        staff.addItem(new Staff(4, "Mark", 70, 180));
+        staff.addItem(new Staff(5, "Luke", 41, 165));
 
-        GenericArray<String> arrString = new GenericArray<String>();
-        arrString.addItem("Monday");
-        arrString.addItem("Tuesday");
-        arrString.addItem("Wednesday");
-        arrString.addItem("Thursday");
-        // System.out.println(arrString.length());
+        Staff.setSortingChoice(4);
+        staff.selectionSort();
 
-        arrString.bubbleSort(arrString);
-
-        Iterator<String> iter = arrString.iterator();
-
+        Iterator<Staff> iter = staff.iterator();
         while (iter.hasNext()) {
-            System.out.println(iter.next());
+            System.out.println(iter.next() + " ");
         }
-
-        // arrString.printContent();
-        // arrString.selectionSort();
-        // arrString.printContent();
 
     }
 }
