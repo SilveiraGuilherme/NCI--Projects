@@ -15,7 +15,7 @@ public class RecLinkedList {
         list.addNode(new Node<String>("Orange"));
         list.addNode(new Node<String>("Pineapple"));
 
-        printNode(list.first);
+        printList(list);
     }
 
     public static void printNode(Node<String> current) {
@@ -31,6 +31,6 @@ public class RecLinkedList {
         if (list.isEmpty()) {
             return;
         }
-        System.out.println(list.getFirst());
+        printNode(list.first);
     }
 }
