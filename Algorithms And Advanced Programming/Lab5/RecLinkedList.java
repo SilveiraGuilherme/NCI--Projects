@@ -1,30 +1,36 @@
 // Write a recursive function that prints all the values from a linked list.
 
-import java.util.LinkedList;
-
 public class RecLinkedList {
     public static void main(String[] args) {
-        LinkedList<String> list = new LinkedList<String>();
+        LinkedListAlt<String> list = new LinkedListAlt<String>();
 
-        list.add("Apple");
-        list.add("Banana");
-        list.add("Grape");
-        list.add("Melon");
-        list.add("Watermelon");
-        list.add("Fig");
-        list.add("Passionfruit");
-        list.add("Strawberry");
-        list.add("Orange");
-        list.add("Pineapple");
+        list.addNode(new Node<String>("Apple"));
+        list.addNode(new Node<String>("Banana"));
+        list.addNode(new Node<String>("Grape"));
+        list.addNode(new Node<String>("Melon"));
+        list.addNode(new Node<String>("Watermelon"));
+        list.addNode(new Node<String>("Fig"));
+        list.addNode(new Node<String>("Passionfruit"));
+        list.addNode(new Node<String>("Strawberry"));
+        list.addNode(new Node<String>("Orange"));
+        list.addNode(new Node<String>("Pineapple"));
 
-        printList(list);
+        printNode(list.first);
     }
 
-    public static void printList(LinkedList<String> list) {
+    public static void printNode(Node<String> current) {
+        System.out.println(current.element);
+        if (current.next == null) {
+            return;
+        } else {
+            printNode(current.next);
+        }
+    }
+
+    public static void printList(LinkedListAlt<String> list) {
         if (list.isEmpty()) {
             return;
         }
         System.out.println(list.getFirst());
-        printList(new LinkedList<>(list.subList(1, list.size())));
     }
 }
