@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "generated.grpc.HospitalLighting";
+option java_outer_classname = "HospitalLightingImpl";
+
+package HospitalLighting;
+
+// The service definition.
+// The server that you implement must extend the class  <servicename>ImplBase
+// so in this example you will create a server class that extends HospitalLightingImplBase
+
+// HospitalLighting manages the lighting of various locations in the Hospital.
+// There are sensors in each enclosure that recognize movement.
+
+service HospitalService2 {
+  
+  //for a specific location, turn on/off the light
+  rpc toogleLight(Location) returns (Confirmation) {}
+}
+
+   //  message identifying a location
+   message Location {
+     string location = 1;
+   }
+
+   // The response message containing answer from the server
+   message Confirmation {
+     boolean switch = 1;
+     string msg = 2;
+   }

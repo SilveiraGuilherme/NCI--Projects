@@ -1,6 +1,6 @@
 public class CarLinkedList implements CarList {
-    private DLNode first;
-    private DLNode last;
+    private DLNode<Car> first;
+    private DLNode<Car> last;
 
     public boolean isEmpty() {
         return first == null;
@@ -8,7 +8,7 @@ public class CarLinkedList implements CarList {
 
     public int size() {
         int size = 0;
-        DLNode current = first;
+        DLNode<Car> current = first;
         while (current != null) {
             size++;
             current = current.next;
@@ -17,10 +17,11 @@ public class CarLinkedList implements CarList {
     }
 
     public int readySize() {
-        DLNode current = first;
+
+        DLNode<Car> current = first;
         int count = 0;
         while (current != null) {
-            if (current.car.status) {
+            if (current.elem.status) {
                 count++;
             }
             current = current.next;
@@ -29,11 +30,11 @@ public class CarLinkedList implements CarList {
     }
 
     public String currentProblems() {
-        DLNode current = first;
+        DLNode<Car> current = first;
         String notReady = "Cars with problems:\n";
         while (current != null) {
-            if (!current.car.status) {
-                notReady += current.car.regist + ": " + current.car.pDesc + "\n";
+            if (!current.elem.status) {
+                notReady += current.elem.regist + ": " + current.elem.pDesc + "\n";
             }
             current = current.next;
         }
@@ -41,12 +42,12 @@ public class CarLinkedList implements CarList {
     }
 
     public double getAverage() {
-        DLNode current = first;
+        DLNode<Car> current = first;
         double avgCost = 0.0;
         int count = 0;
         while (current != null) {
-            if (current.car.fCost != 0) {
-                avgCost += current.car.fCost;
+            if (current.elem.fCost != 0) {
+                avgCost += current.elem.fCost;
                 count++;
             }
             current = current.next;
@@ -57,10 +58,10 @@ public class CarLinkedList implements CarList {
 
     public void add(Car el) {
         if (isEmpty()) {
-            first = new DLNode(el);
+            first = new DLNode<Car>(el);
             last = first;
         } else {
-            last.next = new DLNode(el, last, null);
+            last.next = new DLNode<Car>(el, last, null);
             last = last.next;
         }
     }
@@ -76,7 +77,7 @@ public class CarLinkedList implements CarList {
                 last = first;
             }
         } else {
-            DLNode pred = first;
+            DLNode<Car> pred = first;
             for (int k = 1; k <= index - 1; k++) {
                 pred = pred.next;
             }
@@ -93,16 +94,16 @@ public class CarLinkedList implements CarList {
     public void remove(String target) {
         // DLNode current = first;
         // int index = 0;
-        // while (current != null && !current.car.regist.equals(target)) {
+        // while (current != null && !current.elem.regist.equals(target)) {
         // index++;
         // current = current.next;
         // }
-        // if (current != null && current.car.regist.equals(target)) {
+        // if (current != null && current.elem.regist.equals(target)) {
         // removeInd(index);
         // }
-        DLNode current = first;
+        DLNode<Car> current = first;
         while (current != null) {
-            if (current.car.regist.equals(target)) {
+            if (current.elem.regist.equals(target)) {
                 if (current.previous == null) {
                     first = current.next;
                     current.next.previous = null;
@@ -122,9 +123,9 @@ public class CarLinkedList implements CarList {
     @Override
     public String toString() {
         String out = "";
-        DLNode p = first;
+        DLNode<Car> p = first;
         while (p != null) {
-            out += p.car + "\n\n";
+            out += p.elem + "\n\n";
             p = p.next;
         }
         return out;
