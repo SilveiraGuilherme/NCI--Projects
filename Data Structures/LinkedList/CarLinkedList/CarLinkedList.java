@@ -17,7 +17,6 @@ public class CarLinkedList implements CarList {
     }
 
     public int readySize() {
-
         DLNode<Car> current = first;
         int count = 0;
         while (current != null) {
@@ -130,5 +129,4 @@ public class CarLinkedList implements CarList {
         }
         return out;
     }
-
 }
