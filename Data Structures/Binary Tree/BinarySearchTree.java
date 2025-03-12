@@ -132,12 +132,69 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
     // challenging as we need to consider what we are removing and be
     // able to rebalance the tree to take into consideration the object
     // that was removed.
-    public boolean remove(T element);
+    public boolean remove(T element) {
+        // a reference to the node that we are going to remove
+        BTNode<T> toRemove = findNode(element);
 
-    // to be implemented
-    public T findNode(T element);
+        if (toRemove == null) {
+            System.out.println("Can't find the node in the tree");
+        }
+        // we have a reference to the parent node
+        BTNode<T> parent = findParent(element);
 
-    // to be implemented
-    public T findParent(T element);
+        // if we want to remove a leaf node, we need to identify if a node is a leaf
+        // node.
+        if (toRemove.left == null && toRemove.right == null) {
+            // we need to figure out which child to remove
+            if (toRemove.element.compareTo(parent.element) == -1) {
+                parent.left = null;
+                return true;
+            } else {
+                parent.right = null;
+                return true;
+            }
+            // if the node has only one child, has a left child and no right child
+        } else if (toRemove.left != null && toRemove.right == null) {
+            toRemove = toRemove.left;
+        }
+        // to remove a node in the middle of the tree we need to look at the portion of
+        // the tree to the left (for example) which will all have bigger values than
+        // that node to be removed. Therefore we find the minimum value of that portion,
+        // set it to null and replace that value on the current node. If we look at the
+        // left side of the tree, we will replace it with maximum value of that tree.
+    }
+
+    // we need to find the node based on the value of T
+    public BTNode<T> findNode(T element) {
+        return findNode(element, root);
+    }
+
+    private BTNode<T> findNode(T elem, BTNode<T> current) {
+        if (current == null) {
+            return null;
+        }
+        // return element we are looking for is equal to the current
+        if (current.element.equals(elem)) {
+            return current;
+        } else if (current.element.compareTo(elem) == -1) {
+            // search right - current element is smaller than the element we are looking for
+            return findNode(elem, current.right);
+        } else {
+            return findNode(elem, current.left);
+        }
+    }
+
+    // this method should be able to find the parent of an element. A node that has
+    // the element as a child
+    public BTNode<T> findParent(T element) {
+        return findParent(element, root);
+    }
+
+    private BTNode<T> findParent(T element, BTNode<T> current) {
+        if (element.equals(root.element)) {
+            return null;
+        }
+        BTNode<T> parent = current;
+    }
 
 }
