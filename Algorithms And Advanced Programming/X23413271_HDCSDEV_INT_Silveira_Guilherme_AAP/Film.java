@@ -1,5 +1,5 @@
 public class Film implements Comparable<Object> {
-    // variables
+    // Instance variables representing film properties fromthe CSV dataset
     private int filmID;
     private String genre;
     private String directorName;
@@ -7,7 +7,7 @@ public class Film implements Comparable<Object> {
     private float length;
     private float rating;
 
-    // constructor
+    // Constructor
     public Film(int filmID, String genre, String directorName, String title, float length, float rating) {
         super();
         this.filmID = filmID;

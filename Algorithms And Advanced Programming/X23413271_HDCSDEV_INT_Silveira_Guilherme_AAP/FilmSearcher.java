@@ -4,6 +4,8 @@ public class FilmSearcher {
         int upperB = films.length - 1;
         int foundIndex = -1;
 
+        // Perform binary search on the sorted array to locate one occurrence of the
+        // title
         while (upperB >= lowerB) {
             int mid = (lowerB + upperB) / 2;
             int compare = title.compareToIgnoreCase(films[mid].getTitle());
@@ -35,9 +37,9 @@ public class FilmSearcher {
                 right++;
             }
 
-            // Print all the matches
+            // Print all films with the matching title found between left+1 and right-1
             for (int i = left + 1; i < right; i++) {
-                // System.out.println(films[i]);
+                System.out.println(films[i]);
             }
         } else {
             System.out.println("Not an existing film title");
@@ -74,7 +76,6 @@ public class FilmSearcher {
                 totalTime += (end - start);
             }
             // Calculate the average time given the 3 runs and the total elapsed time
-            // Convert the time to miliseconds to make it more readable
             double avgTime = totalTime / runs;
             // Print the size of the list and average time spent to sort it
             System.out.println("\nSize: " + size + "\tAvg Time: " + avgTime + " nanoseconds");

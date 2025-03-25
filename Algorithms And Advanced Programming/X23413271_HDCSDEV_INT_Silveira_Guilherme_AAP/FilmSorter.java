@@ -21,7 +21,7 @@ public class FilmSorter {
         Film[] temp = new Film[upperB - lowerB];
         int k = 0;
 
-        // Merging the two halves while comparing by title
+        // Merging the two halves while comparing using compareTo()
         // This loop will stop when one of the sides is fully merged
         while (i < mid && j < upperB) {
             if (films[i].compareTo(films[j]) <= 0) {
@@ -49,8 +49,8 @@ public class FilmSorter {
             k++;
         }
 
-        // We need to override the section films[lower] to films[upper -1] with the
-        // sorted elements from the temporary list
+        // We need to copy the elements from temp[] back to the original array in the
+        // correct range
         // This will put the elements in the right order into the original list
         for (int t = 0; t < temp.length; t++) {
             films[lowerB + t] = temp[t];
@@ -87,7 +87,6 @@ public class FilmSorter {
                 totalTime += (end - start);
             }
             // Calculate the average time given the 3 runs and the total elapsed time
-            // Convert the time to miliseconds to make it more readable
             double avgTime = totalTime / runs;
             // Print the size of the list and average time spent to sort it
             System.out.println("\nSize: " + size + "\tAvg Time: " + avgTime + " nanoseconds");
@@ -97,7 +96,7 @@ public class FilmSorter {
     // Helper method to print films
     public static void printFilms(Film[] films) {
         for (Film film : films) {
-            System.out.println(film.getTitle());
+            System.out.println(film);
         }
     }
 }
