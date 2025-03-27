@@ -40,7 +40,8 @@ public class ReadCustomer {
 			}
 		}
 
-		customerList.sort();
+		customerList.sort(null); // I have to use null as a parameter and it will follow the natural ordering
+									// defined by compareTo
 
 		// prints out all the movie data
 		for (Customer customer : customerList) {

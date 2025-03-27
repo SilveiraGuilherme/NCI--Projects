@@ -1,6 +1,7 @@
 import java.util.*;
+import java.lang.Comparable;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     // variables
     private String name;
     private Date DOB;
@@ -39,8 +40,17 @@ public class Customer {
     }
 
     @Override
+    public int compareTo(Customer o) {
+        return this.name.compareToIgnoreCase(o.name);
+    }
+
+    @Override
     public String toString() {
-        return "==========================================================================================\nName:\t"
-                + this.name + "\nDate of Birth:\t" + this.DOB + "\nAddress:\t" + this.address;
+        String formattedDOB = (DOB != null)
+                ? new java.text.SimpleDateFormat("dd/MM/yyyy").format(DOB)
+                : "Unknown";
+
+        return "==========================================================================================\nName: \t\t"
+                + this.name + "\nDate of Birth:\t" + formattedDOB + "\nAddress:\t" + this.address;
     }
 }
