@@ -128,16 +128,158 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
         }
     }
 
+    public BTNode<T> findNode(T element) {
+        return findNode(element, root);
+    };
+
+    private BTNode<T> findNode(T element, BTNode<T> current) {
+        if (current == null) {
+            // not in the tree
+            return null;
+        }
+        if (element.compareTo(current.element) == 0) {
+            return current;
+        } else if (element.compareTo(current.element) < 0) {
+            return findNode(element, current.left);
+        } else {
+            return findNode(element, current.right);
+        }
+    }
+
+    public BTNode<T> findParent(T element) {
+        return findParent(element, root);
+    }
+
+    private BTNode<T> findParent(T element, BTNode<T> current) {
+        // element is the root => no parent
+        if (element.compareTo(root.element) == 0) {
+            return null;
+        }
+        if (element.compareTo(current.element) < 0) {
+            if (current.left == null) {
+                // not in the tree
+                return null;
+            } else if (element.compareTo(current.left.element) == 0) {
+                return current;
+            } else {
+                return findParent(element, current.left);
+            }
+        } else {
+            if (current.right == null) {
+                // not in the tree
+                return null;
+            } else if (element.compareTo(current.right.element) == 0) {
+                return current;
+            } else {
+                return findParent(element, current.right);
+            }
+        }
+    }
+
     // we need to be able to remove an element from the tree. This is
     // challenging as we need to consider what we are removing and be
     // able to rebalance the tree to take into consideration the object
     // that was removed.
-    public boolean remove(T element);
 
-    // to be implemented
-    public T findNode(T element);
+    public boolean remove(T element) {
+        // We need to locate the node that we want to remove
+        BTNode<T> toRemove = findNode(element);
+        if (toRemove == null) {
+            System.out.println("Not found!");
+            return false;
+        }
+        System.out.println("To remove: " + toRemove);
 
-    // to be implemented
-    public T findParent(T element);
+        // we need to find its parent
+        BTNode<T> parent = findParent(element);
+        System.out.println("Parent: " + parent);
 
+        // Simplest case: The removal of a leaf node
+        if (toRemove.left == null && toRemove.right == null) {
+            // determine which child it is
+            if (toRemove.element.compareTo(parent.element) < 0) {
+                // It is the left child
+                parent.left = null;
+            } else {
+                // It is the right child
+                parent.right = null;
+            }
+            return true;
+
+            // The node might have only a left or right child
+        } else if (toRemove.left != null && toRemove.right == null) { // the node only has a left child
+            // We need to link the parent node to the left child of the removed node
+            // Let's find out if the node to be removed is the left or right child of its
+            // parent
+            if (toRemove.element.compareTo(parent.element) < 0) {
+                // the element is the left child, so we need to link its parent to its left
+                // child
+                // we shouldn't get rid of the node, only change the data piece of the object
+                parent.left = toRemove.left;
+            } else { // the element is the right child
+                parent.right = toRemove.left;
+            }
+            return true;
+
+        } else if (toRemove.left == null && toRemove.right != null) { // the node only has a right child
+            if (toRemove.element.compareTo(parent.element) < 0) {
+                parent.left = toRemove.right;
+            } else {
+                parent.right = toRemove.right;
+            }
+            return true;
+
+        } else if (toRemove.left != null && toRemove.right != null) { // the node to be removed has both left and right
+                                                                      // child
+            // find the max value in the left subtree or the minimum in the right subtree
+            T maxValue = findMax(toRemove.left);
+            BTNode<T> replacement = findNode(maxValue);
+            BTNode<T> replacementParent = findParent(maxValue);
+            System.out.println("Replacement: " + replacement + "\nReplacement parent: " + replacementParent);
+
+            // if the replacement parent is the node to be removed, its left child will
+            // replace it
+            if (replacementParent.element.compareTo(toRemove.element) == 0) {
+                replacementParent.left = null;
+            } else {
+                replacementParent.right = null;
+            }
+            toRemove.element = replacement.element;
+            return true;
+        }
+        System.out.println("Parent: " + parent);
+        return false;
+    };
+
+    public static void main(String[] args) {
+        BinaryTree<Integer> numbers = new BinarySearchTree<>();
+        numbers.insert(12);
+        numbers.insert(4);
+        numbers.insert(6);
+        numbers.insert(5);
+        numbers.insert(8);
+        numbers.insert(34);
+        numbers.insert(100);
+        numbers.insert(2);
+
+        System.out.println("------------------");
+        numbers.inOrder();
+
+        System.out.println("------------------");
+        System.out.println("Size of BST: " + numbers.size());
+
+        System.out.println("------------------");
+        System.out.println("Max elem of BST: " + numbers.findMax());
+
+        System.out.println("------------------");
+        System.out.println("Min elem of BST: " + numbers.findMin());
+
+        System.out.println("______________________");
+        numbers.remove(6);
+
+        System.out.println("______________________");
+        numbers.inOrder();
+
+        System.out.println("______________________");
+    }
 }

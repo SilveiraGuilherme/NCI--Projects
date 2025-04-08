@@ -38,9 +38,9 @@ public interface BinaryTree<T extends Comparable<T>> {
   // we need to be able to check if an element is in the tree
   public boolean contains(T element);
 
-  // to be implemented
-  public T findNode(T element);
+  // find the node
+  public BTNode<T> findNode(T element);
 
-  // to be implemented
-  public T findParent(T element);
+  // find the parent of the node
+  public BTNode<T> findParent(T element);
 }

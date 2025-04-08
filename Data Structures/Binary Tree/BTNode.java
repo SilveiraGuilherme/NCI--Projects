@@ -23,7 +23,6 @@ public class BTNode<T> {
 
   // We would also like to be able to create a string representation of this node.
   @Override
-
   public String toString() {
     String leftVal = (left == null ? "NULL" : left.element.toString());
     String rightVal = (right == null ? "NULL" : right.element.toString());
