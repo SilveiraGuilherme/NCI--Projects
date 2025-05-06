@@ -184,11 +184,59 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
     public boolean remove(T element) {
         // We need to locate the node that we want to remove
         BTNode<T> toRemove = findNode(element);
+
+        // CASE 1: The element is not in the tree
         if (toRemove == null) {
             System.out.println("Not found!");
             return false;
         }
         System.out.println("To remove: " + toRemove);
+
+        // CASE 2: The element is the root
+        if (toRemove == root) {
+            // Case 1: root is a leaf
+            if (root.left == null && root.right == null) {
+                root = null;
+                return true;
+            }
+            // Case 2: root has only a left child
+            else if (root.left != null && root.right == null) {
+                root = root.left;
+                return true;
+            }
+            // Case 3: root has only a right child
+            else if (root.left == null && root.right != null) {
+                root = root.right;
+                return true;
+            }
+            // Case 4: root has both left and right children
+            else {
+                T maxValue = findMax(root.left);
+                BTNode<T> replacement = findNode(maxValue);
+                BTNode<T> replacementParent = findParent(maxValue);
+
+                // Let's consider that the replacement node is a direct child of the root,
+                // therefore, the replacementParent will be the node itself
+                if (replacementParent == root) {
+                    root.left = replacement.left;
+                } else {
+                    // replacement is a right child
+                    if (replacementParent.right != null && replacementParent.right.element.equals(maxValue)) {
+                        replacementParent.right = replacement.left;
+                    }
+                    // replacement is a left child
+                    else if (replacement.left != null && replacement.left.element.equals(maxValue)) {
+                        replacementParent.left = replacement.left;
+                    }
+                }
+
+                root.element = replacement.element;
+                return true;
+            }
+
+        }
+
+        // CASE 3: The element exists and is not the root
 
         // we need to find its parent
         BTNode<T> parent = findParent(element);
@@ -229,6 +277,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
             }
             return true;
 
+            // The node has both children
         } else if (toRemove.left != null && toRemove.right != null) { // the node to be removed has both left and right
                                                                       // child
             // find the max value in the left subtree or the minimum in the right subtree
@@ -237,17 +286,23 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
             BTNode<T> replacementParent = findParent(maxValue);
             System.out.println("Replacement: " + replacement + "\nReplacement parent: " + replacementParent);
 
-            // if the replacement parent is the node to be removed, its left child will
-            // replace it
-            if (replacementParent.element.compareTo(toRemove.element) == 0) {
-                replacementParent.left = null;
+            // Considering that the replacement parent is the node to be removed
+            if (replacementParent == toRemove) {
+                toRemove.left = replacement.left;
             } else {
-                replacementParent.right = null;
+                // The node is the left child
+                if (replacementParent.left != null && replacementParent.left.element.equals(maxValue)) {
+                    replacementParent.left = replacement.left;
+                }
+                // The node is the right child
+                else if (replacementParent.right != null && replacementParent.right.element.equals(maxValue)) {
+                    replacementParent.right = replacement.left;
+                }
             }
             toRemove.element = replacement.element;
             return true;
         }
-        System.out.println("Parent: " + parent);
+
         return false;
     };
 
@@ -261,6 +316,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
         numbers.insert(34);
         numbers.insert(100);
         numbers.insert(2);
+        numbers.insert(9);
 
         System.out.println("------------------");
         numbers.inOrder();
@@ -275,7 +331,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
         System.out.println("Min elem of BST: " + numbers.findMin());
 
         System.out.println("______________________");
-        numbers.remove(6);
+        numbers.remove(12);
 
         System.out.println("______________________");
         numbers.inOrder();
