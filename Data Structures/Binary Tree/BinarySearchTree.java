@@ -8,7 +8,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
     // we need to check if the tree is empty...
     public boolean isEmpty() {
         return root == null;
-    };
+    }
 
     // we need to be able to add in an object into our Binary Search tree
     // This should use the compare method to decide the location in the tree
@@ -221,11 +221,11 @@ public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T> 
                     root.left = replacement.left;
                 } else {
                     // replacement is a right child
-                    if (replacementParent.right != null && replacementParent.right.element.equals(maxValue)) {
+                    if (replacementParent.right == replacement) {
                         replacementParent.right = replacement.left;
                     }
                     // replacement is a left child
-                    else if (replacement.left != null && replacement.left.element.equals(maxValue)) {
+                    else if (replacementParent.left == replacement) {
                         replacementParent.left = replacement.left;
                     }
                 }
