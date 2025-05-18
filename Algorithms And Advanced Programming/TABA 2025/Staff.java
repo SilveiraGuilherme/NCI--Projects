@@ -72,7 +72,8 @@ public class Staff implements Serializable {
     // Override toString Method
     @Override
     public String toString() {
-        return "Employee: #" + empNo + ", " + firstName + " " + lastName + "; Department: " + department + "; Wage: "
-                + wage + "; Project Completion Rate: " + pCompRate;
+        return "Employee: #" + empNo + " - " + firstName + " " + lastName + "\nDepartment: " + department
+                + "\nWage: "
+                + wage + "\nProject Completion Rate: " + pCompRate + "\n";
     }
 }
