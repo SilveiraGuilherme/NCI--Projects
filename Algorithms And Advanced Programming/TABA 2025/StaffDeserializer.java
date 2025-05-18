@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 
 public class StaffDeserializer {
     public static void main(String[] args) {
-        String serializedFile = "Staff.ser";
+        String serializedFile = "Staff.dat";
 
         try {
             // Read serialized file

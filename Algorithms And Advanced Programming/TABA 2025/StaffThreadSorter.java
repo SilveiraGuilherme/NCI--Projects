@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 
 public class StaffThreadSorter {
     public static void main(String[] args) {
-        String serializedFile = "Staff.ser";
+        String serializedFile = "Staff.dat";
 
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(serializedFile));

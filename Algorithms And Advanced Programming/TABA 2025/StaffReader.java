@@ -8,7 +8,7 @@ public class StaffReader {
     public static void main(String[] args) throws IOException {
         // Variables used to read and write object from and into a file
         String csvFile = "Staff.csv";
-        String serializedFile = "Staff.ser";
+        String serializedFile = "Staff.dat";
 
         // Create an Array List to store objects created from CSV data
         Staff[] staffArray = new Staff[10000];

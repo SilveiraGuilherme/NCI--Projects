@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class StaffSorter {
     public static void main(String[] args) {
-        String serializedFile = "Staff.ser";
+        String serializedFile = "Staff.dat";
 
         try {
             // Deserialize the list
