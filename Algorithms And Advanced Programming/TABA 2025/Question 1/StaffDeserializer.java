@@ -30,7 +30,6 @@ public class StaffDeserializer {
         if (index >= array.length) {
             return; // Base Case: Stop when it reaches the end
         }
-
         System.out.println(array[index]); // Print current staff
         printStaff(array, index + 1); // Recursive call with next index to print the next Staff object
     }

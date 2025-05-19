@@ -31,25 +31,6 @@ public class StaffSorter {
         }
     }
 
-    public static int compareStaff(Staff a, Staff b, int column) {
-        switch (column) {
-            case 1:
-                return Integer.compare(a.getEmpNo(), b.getEmpNo());
-            case 2:
-                return a.getFirstName().compareToIgnoreCase(b.getFirstName());
-            case 3:
-                return a.getLastName().compareToIgnoreCase(b.getLastName());
-            case 4:
-                return a.getDepartment().compareToIgnoreCase(b.getDepartment());
-            case 5:
-                return Double.compare(a.getWage(), b.getWage());
-            case 6:
-                return Double.compare(a.getPCompRate(), b.getPCompRate());
-            default:
-                return 0;
-        }
-    }
-
     public static void mergeSort(Staff[] array, int lowerB, int upperB, int column) {
         // Making sure that there is at least two elements in the list
         if (lowerB + 1 < upperB) {
@@ -104,6 +85,25 @@ public class StaffSorter {
         // This will put the elements in the right order into the original list
         for (int t = 0; t < temp.length; t++) {
             array[lowerB + t] = temp[t];
+        }
+    }
+
+    private static int compareStaff(Staff a, Staff b, int column) {
+        switch (column) {
+            case 1:
+                return Integer.compare(a.getEmpNo(), b.getEmpNo());
+            case 2:
+                return a.getFirstName().compareToIgnoreCase(b.getFirstName());
+            case 3:
+                return a.getLastName().compareToIgnoreCase(b.getLastName());
+            case 4:
+                return a.getDepartment().compareToIgnoreCase(b.getDepartment());
+            case 5:
+                return Double.compare(a.getWage(), b.getWage());
+            case 6:
+                return Double.compare(a.getPCompRate(), b.getPCompRate());
+            default:
+                return 0;
         }
     }
 }
