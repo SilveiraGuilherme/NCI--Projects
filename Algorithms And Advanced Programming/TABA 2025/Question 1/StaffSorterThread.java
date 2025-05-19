@@ -32,8 +32,7 @@ public class StaffSorterThread extends Thread {
 
             // Write each staff row
             for (Staff staff : data) {
-                String line = staff.getEmpNo() + "," + staff.getFirstName() + "," + staff.getLastName() + ","
-                        + staff.getDepartment() + "," + staff.getWage() + "," + staff.getPCompRate();
+                String line = staff.toString();
                 writer.write(line);
                 writer.newLine();
             }
