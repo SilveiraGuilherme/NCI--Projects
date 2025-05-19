@@ -18,10 +18,9 @@ public class StaffReader {
         try {
             // Open CSV file using BufferedReader
             br = new BufferedReader(new FileReader(csvFile));
-            String line; // Store line
+            br.readLine(); // Skip the header line
 
-            // Skip the header line
-            br.readLine();
+            String line; // Store line
             int index = 0;
 
             // Read each line, convert to Staff object and add to list

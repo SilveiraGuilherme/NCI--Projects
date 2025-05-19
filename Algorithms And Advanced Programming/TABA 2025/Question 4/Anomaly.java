@@ -80,7 +80,7 @@ public class Anomaly {
     }
 
     // Split the line into columns and check 4 types of anomaly
-    public static void validateLine(String line)
+    private static void validateLine(String line)
             throws InvalidYearException, InvalidPhoneException, MissingIdException, InvalidCurrencyException {
         String[] columns = line.split(",");
 
