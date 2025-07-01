@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.sumservice";
+option java_outer_classname = "SumServiceProto";
+
+service SumService {
+    rpc SumArray (SumRequest) returns (SumResponse);
+}
+
+message SumRequest {
+    repeated int32 numbers = 1;
+}
+
+message SumResponse {
+    int32 result = 1;
+}
+
+
