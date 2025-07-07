@@ -1,0 +1,78 @@
+package com.guilherme.project.languageplatform.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "PracticeSessionFlashCard")
+
+public class PracticeSessionFlashCard {
+    // Variables
+    @EmbeddedId
+    private PracticeSessionFlashCardId id = new PracticeSessionFlashCardId();
+
+    @ManyToOne
+    @MapsId("sessionID")
+    @JoinColumn(name = "sessionID")
+    private PracticeSession session;
+
+    @ManyToOne
+    @MapsId("flashCardID")
+    @JoinColumn(name = "flashCardID")
+    private FlashCard flashCard;
+
+    private int queueOrder;
+
+    @Enumerated(EnumType.STRING)
+    private Rating rating = Rating.DONT_KNOW;
+
+    public enum Rating {
+        EASY,
+        MEDIUM,
+        HARD,
+        DONT_KNOW
+    }
+
+    // Constructors
+    public PracticeSessionFlashCard() {
+    }
+
+    public PracticeSessionFlashCard(PracticeSession session, FlashCard flashCard, int queueOrder) {
+        this.session = session;
+        this.flashCard = flashCard;
+        this.queueOrder = queueOrder;
+        this.id = new PracticeSessionFlashCardId(session.getSessionID(), flashCard.getFlashCardID());
+    }
+
+    // Getters and Setters
+    public PracticeSession getSession() {
+        return session;
+    }
+
+    public void setSession(PracticeSession session) {
+        this.session = session;
+    }
+
+    public FlashCard getFlashCard() {
+        return flashCard;
+    }
+
+    public void setFlashCard(FlashCard flashCard) {
+        this.flashCard = flashCard;
+    }
+
+    public int getQueueOrder() {
+        return queueOrder;
+    }
+
+    public void setQueueOrder(int queueOrder) {
+        this.queueOrder = queueOrder;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+}
