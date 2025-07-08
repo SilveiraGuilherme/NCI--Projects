@@ -16,7 +16,7 @@ public class PracticeSession {
     @JoinColumn(name = "studentID", nullable = false)
     private Student student;
 
-    private LocalDateTime startTime = LocalDateTime.now();
+    private LocalDateTime startTime;
     private LocalDateTime endTime;
 
     @Enumerated(EnumType.STRING)
@@ -35,6 +35,7 @@ public class PracticeSession {
 
     public PracticeSession(Student student) {
         this.student = student;
+        this.startTime = LocalDateTime.now();
     }
 
     // Getters and Setters
@@ -78,4 +79,9 @@ public class PracticeSession {
         this.sessionStatus = sessionStatus;
     }
 
+    @Override
+    public String toString() {
+        return "PracticeSession{" + "sessionID=" + sessionID + ", student=" + student + ", startTime=" + startTime
+                + ", endTime=" + endTime + ", sessionStatus=" + sessionStatus + '}';
+    }
 }

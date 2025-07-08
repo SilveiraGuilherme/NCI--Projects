@@ -3,13 +3,11 @@ package com.guilherme.project.languageplatform.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "FlashCard")
-
 public class FlashCard {
     // Variables
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer flashCardID;
+    private Long flashCardID;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String sentence;
@@ -17,21 +15,32 @@ public class FlashCard {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String translation;
 
-    // Constructors
-    public FlashCard() {
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private DifficultyLevel difficultyLevel;
 
-    public FlashCard(String sentence, String translation) {
-        this.sentence = sentence;
-        this.translation = translation;
-    }
+    @Column(nullable = false)
+    private String optionA;
 
-    // Getters and Setters
-    public Integer getFlashCardID() {
+    @Column(nullable = false)
+    private String optionB;
+
+    @Column(nullable = false)
+    private String optionC;
+
+    @Column(nullable = false)
+    private String optionD;
+
+    @Column(nullable = false)
+    private String correctAnswer; // should match one of the options
+
+    // Getters and setters
+
+    public Long getFlashCardID() {
         return flashCardID;
     }
 
-    public void setFlashCardID(Integer flashCardID) {
+    public void setFlashCardID(Long flashCardID) {
         this.flashCardID = flashCardID;
     }
 
@@ -51,4 +60,56 @@ public class FlashCard {
         this.translation = translation;
     }
 
+    public DifficultyLevel getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(DifficultyLevel difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public String getOptionA() {
+        return optionA;
+    }
+
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
+    }
+
+    public String getOptionB() {
+        return optionB;
+    }
+
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
+    }
+
+    public String getOptionC() {
+        return optionC;
+    }
+
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
+    }
+
+    public String getOptionD() {
+        return optionD;
+    }
+
+    public void setOptionD(String optionD) {
+        this.optionD = optionD;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    @Override
+    public String toString() {
+        return "FlashCard{" + "sentence:'" + sentence + '\'' + ", difficultyLevel:'" + difficultyLevel + '\'' + '}';
+    }
 }

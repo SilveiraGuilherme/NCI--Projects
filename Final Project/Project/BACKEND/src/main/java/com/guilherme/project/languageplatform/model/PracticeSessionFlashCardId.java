@@ -5,32 +5,52 @@ package com.guilherme.project.languageplatform.model;
 
 import java.io.Serializable; // Required by JPA to allow object comparison and caching
 import java.util.Objects;
+import jakarta.persistence.Embeddable;
 
+@Embeddable
 public class PracticeSessionFlashCardId implements Serializable {
     // Variables
-    private Integer session;
-    private Integer flashCard;
+    private Integer sessionID;
+    private Long flashCardID;
 
     // Constructors
     public PracticeSessionFlashCardId() {
     }
 
-    public PracticeSessionFlashCardId(Integer session, Integer flashCard) {
-        this.session = session;
-        this.flashCard = flashCard;
+    public PracticeSessionFlashCardId(Integer sessionID, Long flashCardID) {
+        this.sessionID = sessionID;
+        this.flashCardID = flashCardID;
     }
 
+    // Getters and Setters
+    public Integer getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(Integer sessionID) {
+        this.sessionID = sessionID;
+    }
+
+    public Long getFlashCardID() {
+        return flashCardID;
+    }
+
+    public void setFlashCardID(Long flashCardID) {
+        this.flashCardID = flashCardID;
+    }
+
+    // Equals and hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
         if (!(o instanceof PracticeSessionFlashCardId that))
             return false;
-        return Objects.equals(session, that.session) && Objects.equals(flashCard, that.flashCard);
+        return Objects.equals(sessionID, that.sessionID) && Objects.equals(flashCardID, that.flashCardID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(session, flashCard);
+        return Objects.hash(sessionID, flashCardID);
     }
 }

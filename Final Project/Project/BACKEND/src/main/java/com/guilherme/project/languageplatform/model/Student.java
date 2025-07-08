@@ -9,7 +9,11 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentID;
+
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
 
     // Constructors
@@ -44,5 +48,10 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 }
