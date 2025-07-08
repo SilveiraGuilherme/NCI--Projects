@@ -1,4 +1,4 @@
-package com.guilherme.project.languageplatform.model;
+package com.guilherme.project.languageplatform.entity;
 
 import jakarta.persistence.*;
 

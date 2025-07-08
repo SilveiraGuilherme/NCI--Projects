@@ -1,7 +1,7 @@
 // Helper class required for a table with a composite primary key
 // The unique identifier for this table is made of two fields together.
 
-package com.guilherme.project.languageplatform.model;
+package com.guilherme.project.languageplatform.entity.id;
 
 import java.io.Serializable; // Required by JPA to allow object comparison and caching
 import java.util.Objects;

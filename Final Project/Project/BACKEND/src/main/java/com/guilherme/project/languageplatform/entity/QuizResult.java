@@ -1,6 +1,9 @@
-package com.guilherme.project.languageplatform.model;
+package com.guilherme.project.languageplatform.entity;
 
 import java.time.LocalDateTime;
+
+import com.guilherme.project.languageplatform.enums.DifficultyLevel;
+
 import jakarta.persistence.*;
 
 @Entity

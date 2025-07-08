@@ -1,4 +1,7 @@
-package com.guilherme.project.languageplatform.model;
+package com.guilherme.project.languageplatform.entity;
+
+import com.guilherme.project.languageplatform.entity.id.PracticeSessionFlashCardId;
+import com.guilherme.project.languageplatform.enums.Rating;
 
 import jakarta.persistence.*;
 
@@ -25,21 +28,15 @@ public class PracticeSessionFlashCard {
     @Enumerated(EnumType.STRING)
     private Rating rating = Rating.DONT_KNOW;
 
-    public enum Rating {
-        EASY,
-        MEDIUM,
-        HARD,
-        DONT_KNOW
-    }
-
     // Constructors
     public PracticeSessionFlashCard() {
     }
 
-    public PracticeSessionFlashCard(PracticeSession session, FlashCard flashCard, int queueOrder) {
+    public PracticeSessionFlashCard(PracticeSession session, FlashCard flashCard, int queueOrder, Rating rating) {
         this.session = session;
         this.flashCard = flashCard;
         this.queueOrder = queueOrder;
+        this.rating = rating;
         this.id = new PracticeSessionFlashCardId(session.getSessionID(), flashCard.getFlashCardID());
     }
 
