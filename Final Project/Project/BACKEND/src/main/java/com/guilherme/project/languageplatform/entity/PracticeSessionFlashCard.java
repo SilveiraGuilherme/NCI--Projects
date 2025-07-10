@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PracticeSessionFlashCard")
-
 public class PracticeSessionFlashCard {
     // Variables
     @EmbeddedId
@@ -23,7 +22,7 @@ public class PracticeSessionFlashCard {
     @JoinColumn(name = "flashCardID")
     private FlashCard flashCard;
 
-    private int queueOrder;
+    private int positionInQueue;
 
     @Enumerated(EnumType.STRING)
     private Rating rating = Rating.DONT_KNOW;
@@ -32,10 +31,10 @@ public class PracticeSessionFlashCard {
     public PracticeSessionFlashCard() {
     }
 
-    public PracticeSessionFlashCard(PracticeSession session, FlashCard flashCard, int queueOrder, Rating rating) {
+    public PracticeSessionFlashCard(PracticeSession session, FlashCard flashCard, int positionInQueue, Rating rating) {
         this.session = session;
         this.flashCard = flashCard;
-        this.queueOrder = queueOrder;
+        this.positionInQueue = positionInQueue;
         this.rating = rating;
         this.id = new PracticeSessionFlashCardId(session.getSessionID(), flashCard.getFlashCardID());
     }
@@ -57,12 +56,12 @@ public class PracticeSessionFlashCard {
         this.flashCard = flashCard;
     }
 
-    public int getQueueOrder() {
-        return queueOrder;
+    public int getPositionInQueue() {
+        return positionInQueue;
     }
 
-    public void setQueueOrder(int queueOrder) {
-        this.queueOrder = queueOrder;
+    public void setpPsitionInQueue(int positionInQueue) {
+        this.positionInQueue = positionInQueue;
     }
 
     public Rating getRating() {

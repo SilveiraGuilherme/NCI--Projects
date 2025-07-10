@@ -5,6 +5,7 @@ import com.guilherme.project.languageplatform.enums.DifficultyLevel;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "FlashCard")
 public class FlashCard {
     // Variables
     @Id
@@ -36,8 +37,23 @@ public class FlashCard {
     @Column(nullable = false)
     private String correctAnswer; // should match one of the options
 
-    // Getters and setters
+    // Constructors
+    public FlashCard() {
+    }
 
+    public FlashCard(String sentence, String translation, DifficultyLevel difficultyLevel,
+            String optionA, String optionB, String optionC, String optionD, String correctAnswer) {
+        this.sentence = sentence;
+        this.translation = translation;
+        this.difficultyLevel = difficultyLevel;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correctAnswer = correctAnswer;
+    }
+
+    // Getters and setters
     public Long getFlashCardID() {
         return flashCardID;
     }

@@ -8,12 +8,12 @@ public class Student {
     // Variables
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer studentID;
+    private Long studentID;
 
-    @Column(nullable = false)
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     // Constructors
@@ -26,11 +26,11 @@ public class Student {
     }
 
     // Getters and Setters
-    public Integer getStudentID() {
+    public Long getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(Integer studentID) {
+    public void setStudentID(Long studentID) {
         this.studentID = studentID;
     }
 

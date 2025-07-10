@@ -19,7 +19,7 @@ public class QuizResult {
     private Student student;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "difficultyLevel", nullable = false)
     private DifficultyLevel difficultyLevel;
 
     @Column(nullable = false)
@@ -51,6 +51,10 @@ public class QuizResult {
     // Getters and Setters
     public Long getResultID() {
         return resultID;
+    }
+
+    public void setResultID(Long resultID) {
+        this.resultID = resultID;
     }
 
     public Student getStudent() {

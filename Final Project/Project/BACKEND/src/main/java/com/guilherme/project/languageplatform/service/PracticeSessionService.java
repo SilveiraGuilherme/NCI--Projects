@@ -14,19 +14,34 @@ public class PracticeSessionService {
     @Autowired
     private PracticeSessionRepository practiceSessionRepository;
 
-    public List<PracticeSession> getAllSessions() {
+    public List<PracticeSession> getAllPracticeSessions() {
         return practiceSessionRepository.findAll();
     }
 
-    public Optional<PracticeSession> getSessionById(Integer id) {
+    public Optional<PracticeSession> getPracticeSessionById(Integer id) {
         return practiceSessionRepository.findById(id);
     }
 
-    public PracticeSession saveSession(PracticeSession session) {
+    public Optional<PracticeSession> getOngoingSessionByStudentId(Integer studentId) {
+        return practiceSessionRepository.findByStudentStudentIDAndSessionStatus(studentId,
+                PracticeSession.SessionStatus.ONGOING);
+    }
+
+    public PracticeSession savePracticeSession(PracticeSession session) {
         return practiceSessionRepository.save(session);
     }
 
-    public void deleteSession(Integer id) {
+    public PracticeSession updatePracticeSession(Integer id, PracticeSession updatedSession) {
+        PracticeSession session = practiceSessionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Session not found"));
+
+        session.setSessionStatus(updatedSession.getSessionStatus());
+        session.setEndTime(updatedSession.getEndTime());
+
+        return practiceSessionRepository.save(session);
+    }
+
+    public void deletePracticeSession(Integer id) {
         practiceSessionRepository.deleteById(id);
     }
 }

@@ -26,4 +26,12 @@ public class FlashCardService {
     public List<FlashCard> getFlashCardsByDifficulty(DifficultyLevel difficultyLevel) {
         return flashCardRepository.findByDifficultyLevel(difficultyLevel);
     }
+
+    public FlashCard saveFlashCard(FlashCard flashCard) {
+        return flashCardRepository.save(flashCard);
+    }
+
+    public void deleteFlashCard(Long id) {
+        flashCardRepository.deleteById(id);
+    }
 }
