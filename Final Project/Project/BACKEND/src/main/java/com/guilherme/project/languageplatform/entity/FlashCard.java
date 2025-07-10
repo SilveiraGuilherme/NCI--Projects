@@ -3,6 +3,8 @@ package com.guilherme.project.languageplatform.entity;
 import com.guilherme.project.languageplatform.enums.DifficultyLevel;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 
 @Entity
 @Table(name = "FlashCard")
@@ -36,6 +38,10 @@ public class FlashCard {
 
     @Column(nullable = false)
     private String correctAnswer; // should match one of the options
+
+    @OneToMany(mappedBy = "flashCard", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<PracticeSessionFlashCard> practiceSessionFlashCards;
 
     // Constructors
     public FlashCard() {

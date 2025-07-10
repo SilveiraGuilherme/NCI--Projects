@@ -18,8 +18,12 @@ public class QuizResult {
     @JoinColumn(name = "studentID", nullable = false)
     private Student student;
 
+    @ManyToOne
+    @JoinColumn(name = "sessionID", nullable = false)
+    private PracticeSession session;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "difficultyLevel", nullable = false)
+    @Column(name = "difficultyLevel")
     private DifficultyLevel difficultyLevel;
 
     @Column(nullable = false)
@@ -28,19 +32,21 @@ public class QuizResult {
     @Column(nullable = false)
     private int correctAnswers;
 
-    @Column(nullable = false)
+    @Column(name = "completionTime", nullable = false)
     private LocalDateTime timestamp;
 
     // Constructors
     public QuizResult() {
-        this.timestamp = LocalDateTime.now();
     }
 
-    public QuizResult(Student student, DifficultyLevel difficultyLevel, int totalQuestions, int correctAnswers) {
+    public QuizResult(Student student, PracticeSession session, DifficultyLevel difficultyLevel, int totalQuestions,
+            int correctAnswers) {
         this.student = student;
+        this.session = session;
         this.difficultyLevel = difficultyLevel;
         this.totalQuestions = totalQuestions;
         this.correctAnswers = correctAnswers;
+        this.timestamp = LocalDateTime.now();
     }
 
     @PrePersist
@@ -63,6 +69,14 @@ public class QuizResult {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public PracticeSession getSession() {
+        return session;
+    }
+
+    public void setSession(PracticeSession session) {
+        this.session = session;
     }
 
     public DifficultyLevel getDifficultyLevel() {

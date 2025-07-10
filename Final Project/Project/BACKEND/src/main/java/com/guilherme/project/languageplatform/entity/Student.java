@@ -1,6 +1,9 @@
 package com.guilherme.project.languageplatform.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Student")
@@ -8,13 +11,24 @@ public class Student {
     // Variables
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "studentID")
     private Long studentID;
 
+    @NotBlank
+    @Size(max = 50)
     @Column(name = "firstName", nullable = false)
     private String firstName;
 
+    @NotBlank
+    @Size(max = 50)
     @Column(name = "lastName", nullable = false)
     private String lastName;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PracticeSession> practiceSessions;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuizResult> quizResults;
 
     // Constructors
     public Student() {

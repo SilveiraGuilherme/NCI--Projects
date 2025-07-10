@@ -39,6 +39,14 @@ public class PracticeSessionFlashCard {
         this.id = new PracticeSessionFlashCardId(session.getSessionID(), flashCard.getFlashCardID());
     }
 
+    public PracticeSessionFlashCardId getId() {
+        return id;
+    }
+
+    public void setId(PracticeSessionFlashCardId id) {
+        this.id = id;
+    }
+
     // Getters and Setters
     public PracticeSession getSession() {
         return session;
@@ -60,7 +68,7 @@ public class PracticeSessionFlashCard {
         return positionInQueue;
     }
 
-    public void setpPsitionInQueue(int positionInQueue) {
+    public void setPositionInQueue(int positionInQueue) {
         this.positionInQueue = positionInQueue;
     }
 

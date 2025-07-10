@@ -12,11 +12,14 @@ public class PracticeSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sessionID;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "studentID", nullable = false)
     private Student student;
 
+    @Column(nullable = false)
     private LocalDateTime startTime;
+
+    @Column(nullable = false)
     private LocalDateTime endTime;
 
     @Enumerated(EnumType.STRING)
@@ -36,6 +39,13 @@ public class PracticeSession {
     public PracticeSession(Student student) {
         this.student = student;
         this.startTime = LocalDateTime.now();
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.startTime == null) {
+            this.startTime = LocalDateTime.now();
+        }
     }
 
     // Getters and Setters
